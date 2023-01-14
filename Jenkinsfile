@@ -1,29 +1,11 @@
 pipeline{
-    agent any
-    environment {
-        PATH = "$PATH:/opt/apache-maven-3.8.2/bin"
+  stage('SCM') {
+    checkout scm
+  }
+  stage('SonarQube Analysis') {
+    def mvn = tool 'Default Maven';
+    withSonarQubeEnv() {
+      sh "${mvn}/bin/mvn clean verify sonar:sonar -Dsonar.projectKey=sonar_jenkins"
     }
-    stages{
-       stage('GetCode'){
-            steps{
-                git 'https://github.com/lgilucam/Proyecto_FinalCSW.git'
-            }
-         }        
-       stage('Build'){
-            steps{
-                sh 'mvn clean package'
-            }
-         }
-        stage('SonarQube analysis') {
-//    def scannerHome = tool 'SonarScanner 4.0';
-        steps{
-        withSonarQubeEnv('sonarqube-8.9') { 
-        // If you have configured more than one global server connection, you can specify its name
-//      sh "${scannerHome}/bin/sonar-scanner"
-        sh "mvn sonar:sonar"
-    }
-        }
-        }
-       
-    }
+  }
 }
