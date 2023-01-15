@@ -60,7 +60,6 @@ public class GestionTest {
 	    assertNotNull(juego2);
 	    System.out.println("Comprobando disco1 : "+juego2+ " --- OK");
 	}
-
 	
 	@Test
 	public void testGetNombre() {
