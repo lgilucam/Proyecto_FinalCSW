@@ -78,6 +78,4 @@ node {
             -Dsonar.sources=${SONAR_SOURCES}"
         )
       }
-      }
-      
 }
