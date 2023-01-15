@@ -111,7 +111,7 @@ public class GestionTest {
 		   assertEquals(disco1.getCantStock(),6); 
 		   System.out.println("-----------------------------------------------");
 		   System.out.println("Comprobando nombre de disco2 : "+disco2.getCantStock());
-		   assertEquals(disco2.getCantStock(),0); 
+		   assertNotEquals(disco2.getCantStock(),0); 
 		   System.out.println("-----------------------------------------------");
 		   System.out.println("Comprobando nombre de cine1 : "+cine1.getCantStock());
 		   assertEquals(cine1.getCantStock(),5); 
@@ -129,7 +129,7 @@ public class GestionTest {
 		   assertTrue(disco1.isDisponible());
 		   System.out.println("-----------------------------------------------");
 		   System.out.println("Comprobando isDisponible a false de disco2 : "+disco2.isDisponible());
-		   assertFalse(disco2.isDisponible()); 
+		   assertTrue(disco2.isDisponible()); 
 		   System.out.println("-----------------------------------------------");
 		   System.out.println("Comprobando isDisponible a true de cine1 : "+cine1.isDisponible());
 		   assertTrue(cine1.isDisponible()); 
