@@ -16,27 +16,6 @@ def SONAR_PROJECT_KEY = 'sonar_jenkins'
 // More accurately this is relative to the Gradle build script(s) that manage the SonarQube Scanning
 def SONAR_PROJECT_BASE_DIR = 'C:/Program Files/sonarqube/bin/windows-x86-64'
 
-// The source code directory you want to scan.
-// This is relative to the project base directory.
-def SONAR_SOURCES = './'
-// ================================================================================================
-
-@NonCPS
-String getUrlForRoute(String routeName, String projectNameSpace = '') {
-
-  def nameSpaceFlag = ''
-  if(projectNameSpace?.trim()) {
-    nameSpaceFlag = "-n ${projectNameSpace}"
-  }
-  
-  def url = sh (
-    script: "oc get routes ${nameSpaceFlag} -o wide --no-headers | awk \'/${routeName}/{ print match(\$0,/edge/) ?  \"https://\"\$2 : \"http://\"\$2 }\'",
-    returnStdout: true
-  ).trim()
-
-  return url
-}
-
 node {
   stage('SCM') {
     checkout scm
