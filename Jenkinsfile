@@ -1,11 +1,16 @@
-node {
-  stage('SCM') {
-    checkout scm
-  }
-  stage('SonarQube Analysis') {
-    def mvn = tool 'maven_home';
-    withSonarQubeEnv() {
-      sh "${mvn}/bin/mvn clean verify sonar:sonar -Dsonar.projectKey=sonar_jenkins"
+pipeline {
+  agent any
+  stages {
+    stage('SonarQube analysis') {
+      steps {
+        script {
+          // requires SonarQube Scanner 2.8+
+          scannerHome = tool 'SonarQube Scanner 2.8'
+        }
+        withSonarQubeEnv('SonarQube Scanner') {
+          sh "${scannerHome}/bin/sonar-scanner"
+        }
+      }
     }
   }
 }
