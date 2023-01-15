@@ -16,7 +16,7 @@ public class GestionTest {
    
     Gestion gestion = new Gestion();
     Producto catalogo[] = new Producto[Producto.dimesionArray];
-    
+  
 
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
