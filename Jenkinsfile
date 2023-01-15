@@ -14,7 +14,7 @@ def SONAR_PROJECT_KEY = 'sonar_jenkins'
 // The base directory of your project.
 // This is relative to the location of the `sonar-runner` directory within your project.
 // More accurately this is relative to the Gradle build script(s) that manage the SonarQube Scanning
-def SONAR_PROJECT_BASE_DIR = '../'
+def SONAR_PROJECT_BASE_DIR = 'C:/Program Files/sonarqube/bin/windows-x86-64'
 
 // The source code directory you want to scan.
 // This is relative to the project base directory.
@@ -48,11 +48,6 @@ node {
   stage('SonarQube Analysis') {
       echo "Performing static SonarQube code analysis ..."
 
- //     SONARQUBE_URL = getUrlForRoute(SONAR_ROUTE_NAME).trim()
- //     SONARQUBE_PWD = getSonarQubePwd().trim()
-      echo "URL: ${SONARQUBE_URL}"
-      echo "PWD: ${SONARQUBE_PWD}"
-
       // The `sonar-runner` MUST exist in your project and contain a Gradle environment consisting of:
       // - Gradle wrapper script(s)
       // - A simple `build.gradle` file that includes the SonarQube plug-in.
@@ -69,11 +64,11 @@ node {
         // ======================================================================================================
         sh (
         //  returnStdout: true,
-          script: "./gradlew sonarqube --stacktrace --info \
+          script: "mvn package verify sonar:sonar  \
             -Dsonar.verbose=true \
-            -Dsonar.host.url=${SONARQUBE_URL} \
-            -Dsonar.projectName=${SONAR_PROJECT_NAME} \
-            -Dsonar.projectKey=${SONAR_PROJECT_KEY} \
+            -Dsonar.host.url=http://localhost:9000 \
+            -Dsonar.projectName=Proyecto_FinalCSW \
+            -Dsonar.projectKey=sonar_jenkins \
             -Dsonar.projectBaseDir=${SONAR_PROJECT_BASE_DIR} \
             -Dsonar.sources=${SONAR_SOURCES}"
         )
