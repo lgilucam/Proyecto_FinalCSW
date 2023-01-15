@@ -47,8 +47,7 @@ node {
             -Dsonar.verbose=true \
             -Dsonar.host.url=http://localhost:9000 \
             -Dsonar.projectName=Proyecto_FinalCSW \
-            -Dsonar.projectKey=sonar_jenkins \
-            -Dsonar.projectBaseDir=${SONAR_PROJECT_BASE_DIR}"
+            -Dsonar.projectKey=sonar_jenkins "
         )
       }
 }
