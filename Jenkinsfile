@@ -6,7 +6,7 @@
 def SONAR_ROUTE_NAME = 'sonarqube'
 
 // The name of your SonarQube project
-def SONAR_PROJECT_NAME = 'sonar_jenkins'
+def SONAR_PROJECT_NAME = 'Proyecto_FinalCSW'
 
 // The project key of your SonarQube project
 def SONAR_PROJECT_KEY = 'sonar_jenkins'
@@ -48,8 +48,8 @@ node {
   stage('SonarQube Analysis') {
       echo "Performing static SonarQube code analysis ..."
 
-      SONARQUBE_URL = getUrlForRoute(SONAR_ROUTE_NAME).trim()
-      SONARQUBE_PWD = getSonarQubePwd().trim()
+ //     SONARQUBE_URL = getUrlForRoute(SONAR_ROUTE_NAME).trim()
+ //     SONARQUBE_PWD = getSonarQubePwd().trim()
       echo "URL: ${SONARQUBE_URL}"
       echo "PWD: ${SONARQUBE_PWD}"
 
@@ -59,7 +59,7 @@ node {
       //
       // An example can be found here:
       // - https://github.com/BCDevOps/sonarqube
-      dir('sonar-runner') {
+      //dir('sonar-runner') {
         // ======================================================================================================
         // Set your SonarQube scanner properties at this level, not at the Gradle Build level.
         // The only thing that should be defined at the Gradle Build level is a minimal set of generic defaults.
@@ -68,7 +68,7 @@ node {
         // - https://docs.sonarqube.org/display/SCAN/Analyzing+with+SonarQube+Scanner+for+Gradle
         // ======================================================================================================
         sh (
-          returnStdout: true,
+        //  returnStdout: true,
           script: "./gradlew sonarqube --stacktrace --info \
             -Dsonar.verbose=true \
             -Dsonar.host.url=${SONARQUBE_URL} \
