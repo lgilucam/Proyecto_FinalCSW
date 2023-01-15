@@ -1,11 +1,6 @@
 pipeline{
     agent any
     stages{
-       stage('GetCode'){
-            steps{
-                git 'https://github.com/lgilucam/Proyecto_FinalCSW.git'
-            }
-         }        
        stage('Build'){
             steps{
                 sh 'mvn clean package'
